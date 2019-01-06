@@ -9,8 +9,8 @@
   <b-collapse is-nav id="nav_collapse">
 
     <b-navbar-nav>
-      <b-nav-item href="#">Link</b-nav-item>
-      <b-nav-item href="#" disabled>Disabled</b-nav-item>
+      <b-nav-item <router-link tag="a" to="tabs" activeClass="active">Tabs Widget</b-nav-item>
+      <b-nav-item <router-link tag="a" to="/" activeClass="active">Disabled</b-nav-item>
     </b-navbar-nav>
 
     <!-- Right aligned nav items -->

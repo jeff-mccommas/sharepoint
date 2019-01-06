@@ -9,12 +9,14 @@
 <script>
 import Header from "./components/Header.vue";
 import Home from "./views/Home.vue";
+import Tabs  from './components/bsTabs.vue'
 export default {
   components: {
     appHeader: Header,
-    Home: Home
+    Home: Home,
+    Tabs: Tabs
   }
-};
+}
 </script>
 
 <style>
