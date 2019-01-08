@@ -9,6 +9,12 @@
 // @ is an alias to /src
 
 export default {
-  Home: 'Home'
-}
+  Home: 'Home',
+  data() {
+    return {};
+  },
+  computed: {},
+  mounted () {},
+  methods: {}
+};
 </script>

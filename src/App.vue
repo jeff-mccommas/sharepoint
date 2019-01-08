@@ -8,15 +8,15 @@
 </template>
 <script>
 import Header from "./components/Header.vue";
-import Home from "./views/Home.vue";
-import Tabs  from './components/bsTabs.vue'
+import Home from "./components/Home.vue";
+import Tabs from "./components/bsTabs.vue";
 export default {
   components: {
-    appHeader: Header,
-    Home: Home,
-    Tabs: Tabs
+    appHeader: Header
+    // Home: Home,
+    // appTabs: Tabs
   }
-}
+};
 </script>
 
 <style>

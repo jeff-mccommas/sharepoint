@@ -1,6 +1,17 @@
 <template>
   <div>
-   <b-navbar toggleable="md" type="dark" variant="info">
+    <div>
+      <b-navbar type="dark" variant="info">
+        <b-nav>
+    <b-nav-item ><router-link activeClass ="active" to="/">Home</router-link></b-nav-item>
+    <b-nav-item ><router-link activeClass ="active" to="/tabs">Tabs</router-link></b-nav-item>
+    <b-nav-item>Another Link</b-nav-item>
+    <b-nav-item disabled>Disabled</b-nav-item>
+  </b-nav>
+      </b-navbar>
+
+</div>
+   <!-- <b-navbar toggleable="md" type="dark" variant="info">
 
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
@@ -13,7 +24,7 @@
       <b-nav-item <router-link tag="a" to="/" activeClass="active">Disabled</b-nav-item>
     </b-navbar-nav>
 
-    <!-- Right aligned nav items -->
+    Right aligned nav items -->
     <b-navbar-nav class="ml-auto">
 
 
