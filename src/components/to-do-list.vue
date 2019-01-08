@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h1>tabs component</h1>
+    <h2>ToDoList</h2>
   </div>
 </template>
 
 <script>
 export default {
-  Tabs: 'Tabs',
+  name: 'ToDoList',
   data () {
     return {}
   },
@@ -14,7 +14,6 @@ export default {
   mounted () {},
   methods: {}
 }
-
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

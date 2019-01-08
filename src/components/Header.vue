@@ -4,7 +4,9 @@
       <b-navbar type="dark" variant="info">
         <b-nav>
     <b-nav-item ><router-link activeClass ="active" to="/">Home</router-link></b-nav-item>
-    <b-nav-item ><router-link activeClass ="active" to="/tabs">Tabs</router-link></b-nav-item>
+    <b-nav-item ><router-link activeClass ="active" to="/tabs-h">Horizontal Tabs</router-link></b-nav-item>
+        <b-nav-item ><router-link activeClass ="active" to="/tabs-v">Vertical Tabs</router-link></b-nav-item>
+
     <b-nav-item>Another Link</b-nav-item>
     <b-nav-item disabled>Disabled</b-nav-item>
   </b-nav>
@@ -26,7 +28,6 @@
 
     Right aligned nav items -->
     <b-navbar-nav class="ml-auto">
-
 
     </b-navbar-nav>
 
@@ -57,5 +58,13 @@ a.router-link-exact-active.active {
     text-decoration: none;
     background-color: transparent;
     /* font-family: Arial, Helvetica, sans-serif */
+}
+a.router-link:hover {
+    color: #f8f9fa;
+    text-decoration: underline;
+}
+a.router-link {
+    color: #ffffff;
+    text-decoration: underline;
 }
 </style>

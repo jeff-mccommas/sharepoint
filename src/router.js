@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Tabs from './components/bsTabs.vue'
+import TabsH from './components/bsTabs-h.vue'
+import TabsV from './components/bsTabs-v.vue'
 import Home from './components/Home.vue'
 
 Vue.use(Router)
@@ -14,8 +15,13 @@ export default new Router({
     component: Home
   },
   {
-    path: '/tabs',
-    component: Tabs
+    path: '/tabs-h',
+    component: TabsH
+
+  },
+  {
+    path: '/tabs-v',
+    component: TabsV
 
   }
   ]

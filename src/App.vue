@@ -1,20 +1,25 @@
 <template>
   <div id="app">
-    <app-header></app-header>
-    <transition name="slide" mode="out-in">
-      <router-view/>
-    </transition>
+    <b-container class="bv-example-row">
+      <app-header></app-header>
+      <transition name="slide" mode="out-in">
+        <router-view/>
+      </transition>
+    </b-container>
   </div>
 </template>
 <script>
 import Header from "./components/Header.vue";
 import Home from "./components/Home.vue";
-import Tabs from "./components/bsTabs.vue";
+import TabsH from './components/bsTabs-h.vue';
+import TabsV from './components/bsTabs-v.vue';
+
 export default {
   components: {
-    appHeader: Header
-    // Home: Home,
-    // appTabs: Tabs
+    appHeader: Header,
+    Home: Home,
+    TabsH: TabsH,
+    TabsV: TabsV
   }
 };
 </script>

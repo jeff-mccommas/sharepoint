@@ -10,11 +10,11 @@
 
 export default {
   Home: 'Home',
-  data() {
-    return {};
+  data () {
+    return {}
   },
   computed: {},
   mounted () {},
   methods: {}
-};
+}
 </script>
