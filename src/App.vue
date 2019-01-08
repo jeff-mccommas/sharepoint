@@ -11,15 +11,17 @@
 <script>
 import Header from "./components/Header.vue";
 import Home from "./components/Home.vue";
-import TabsH from './components/bsTabs-h.vue';
-import TabsV from './components/bsTabs-v.vue';
+import TabsH from "./components/bsTabs-h.vue";
+import TabsV from "./components/bsTabs-v.vue";
+import bModal from "./components/bModal.vue";
 
 export default {
   components: {
     appHeader: Header,
     Home: Home,
     TabsH: TabsH,
-    TabsV: TabsV
+    TabsV: TabsV,
+    bModal: bModal
   }
 };
 </script>
