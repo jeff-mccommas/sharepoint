@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  bModal: "bModal",
+  bsModal: "bsModal",
   data() {
     return {};
   },

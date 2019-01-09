@@ -9,11 +9,11 @@
   </div>
 </template>
 <script>
-import Header from "./components/Header.vue";
-import Home from "./components/Home.vue";
-import TabsH from "./components/bsTabs-h.vue";
-import TabsV from "./components/bsTabs-v.vue";
-import bModal from "./components/bModal.vue";
+import Header from './components/Header.vue';
+import Home from './components/Home.vue';
+import TabsH from './components/bsTabs-h.vue';
+import TabsV from './components/bsTabs-v.vue';
+import bsModal from './components/bsModal.vue';
 
 export default {
   components: {
@@ -21,7 +21,7 @@ export default {
     Home: Home,
     TabsH: TabsH,
     TabsV: TabsV,
-    bModal: bModal
+    bModal: bsModal
   }
 };
 </script>
