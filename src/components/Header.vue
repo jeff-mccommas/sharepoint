@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  appHeader: "Header",
+  appHeader: 'Header',
   data() {
     return {};
   },
