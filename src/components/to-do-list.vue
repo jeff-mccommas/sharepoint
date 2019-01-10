@@ -42,7 +42,7 @@
 
 <script>
 export default {
-  el: "#todo",
+  el: '#todo',
   name: 'ToDoList',
   directives: {
     autofocus: {
@@ -51,74 +51,90 @@ export default {
       }
     }
   },
- data: {
-			newTask: "",
-			tasks: [
-				{
-					text: "This is an example task. Delete or add your own",
-					checked: false
-				}
-			],
+  data: {
+    newTask: '',
+    tasks: [
+      {
+        text: 'This is an example task. Delete or add your own',
+        checked: false
+      }
+    ],
 
-			editingTask: {
+    editingTask: {}
+  },
 
-			}
-		},
+  computed: {
+    areAllSelected: function() {
+      return (
+        this.tasks.every(function(task) {
+          return task.checked;
+        }) && this.tasks.length > 0
+      );
+    }
+  },
+  methods: {
+    addTask: function() {
+      var task = this.newTask.trim();
+      if (task) {
+        this.tasks.push({ text: task, checked: false });
+        this.newTask = '';
+      }
+    },
 
-		computed: {
-			areAllSelected: function () {
-				return this.tasks.every(function(task) {
-					return task.checked;
-				}) &&  this.tasks.length > 0;
-			},
-		},
-methods: {
+    removeTask: function(task) {
+      var index = this.tasks.indexOf(task);
+      this.tasks.splice(index, 1);
+    },
 
-			addTask: function () {
-				var task = this.newTask.trim();
-				if (task) {
-					this.tasks.push({text: task, checked: false});
-					this.newTask = "";
-				}
-			},
+    editTask: function(task) {
+      this.editingTask = task;
+    },
 
-			removeTask: function (task) {
-        var index = this.tasks.indexOf(task);
-				this.tasks.splice(index, 1);
-			},
+    endEditing: function(task) {
+      this.editingTask = {};
+      if (task.text.trim() === '') {
+        this.removeTask(task);
+      }
+    },
 
-			editTask: function (task) {
-				this.editingTask = task;
-			},
+    clearList: function() {
+      this.tasks = [];
+    },
 
-			endEditing: function (task) {
-				this.editingTask = {};
-				if (task.text.trim() === ""){
-					this.removeTask(task);
-				}
+    selectAll: function(task) {
+      var targetValue = this.areAllSelected ? false : true;
+      for (var i = 0; i < this.tasks.length; i++) {
+        this.tasks[i].checked = targetValue;
+      }
+    },
 
-			},
+    check: function(task) {
+      task.checked = true;
+    },
 
-			clearList: function () {
-				this.tasks = [
+    isChecked: function(task) {
+      return task.checked;
+    }
+  }
+};
+</script>
+  <style>
+/* .panel,
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style-type: none;
+  padding: 10px;
+  border-bottom: 1px solid #efefef;
+  background-color: #e7e8eb;
+} */
 
-				];
-			},
-
-			selectAll: function (task) {
-				var targetValue = this.areAllSelected ? false : true;
-				for (var i = 0; i < this.tasks.length; i++) {
-					this.tasks[i].checked = targetValue;
-				}
-			},
-
-			check: function (task) {
-				task.checked = true;
-			},
-
-			isChecked: function (task) {
-				return task.checked;
-			}
-
-		}
-	});
+.text-input {
+  border: 1px solid #dedede;
+  padding-left: 10px;
+  width: 70%;
+  height: 35px;
+  color: #555;
+}
+</style>
