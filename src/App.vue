@@ -14,6 +14,7 @@ import Home from './components/Home.vue';
 import TabsH from './components/bsTabs-h.vue';
 import TabsV from './components/bsTabs-v.vue';
 import bsModal from './components/bsModal.vue';
+import ToDoList from './components/to-do-list.vue';
 
 export default {
   components: {
@@ -21,7 +22,8 @@ export default {
     Home: Home,
     TabsH: TabsH,
     TabsV: TabsV,
-    bModal: bsModal
+    bModal: bsModal,
+    ToDoList
   }
 };
 </script>

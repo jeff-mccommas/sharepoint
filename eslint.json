@@ -1,6 +1,6 @@
 {
     "loader": "eslint-loader",
-    "options":{
+    "options": {
         "failOnWarning": false
     },
 
@@ -12,7 +12,7 @@
         }
     },
     "rules": {
-        "semi": 2
+
+        "quotes": [1, "double", "avoid-escape"]
     }
 }
-

@@ -1,83 +1,48 @@
 <template>
-  <div class="columns">
-    <div class="column is-half is-offset-one-quarter task-list">
-      <div class="box">
-        <h2 class="title">My tasks</h2>
-        <hr>
-        <div class="field has-addons">
-          <div class="control is-expanded">
-            <input class="input" type="text" placeholder="New task" v-model="task.body">
-          </div>
-          <div class="control">
-            <a class="button is-primary" @click="createTask()">Add task</a>
-          </div>
-        </div>
+  <div class="container" id="todo">
+    <section class="panel">
+      <input type="checkbox" id="mark-all" @click="selectAll" :checked="areAllSelected">
+      <input
+        v-model="newTask"
+        @keyup.enter="addTask"
+        placeholder="What do you need to do?"
+        autofocus
+        class="text-input"
+      >
+      <button @click="clearList">Clear List</button>
+    </section>
 
-        <div class="tabs is-centered">
-          <ul>
-            <li :class="{'is-active':isActive('current')}">
-              <h3 class="title">
-                <a href="#" v-on:click.prevent="fetchTaskList()">Current task</a>
-              </h3>
-            </li>
-            <li :class="{'is-active':isActive('archive')}">
-              <h3 class="title">
-                <a href="#" v-on:click.prevent="fetchTaskList(1)">Archived tasks</a>
-              </h3>
-            </li>
-          </ul>
-        </div>
-        <li v-for="(task,index )in tasks" :key="`task-${index}`" :class="{done: isChecked(task)}">
-          <header class="card-header">
-            <p class="card-header-title">Task {{ task.id }}</p>
-            <a
-              href="#"
-              class="card-header-icon"
-              aria-label="more options"
-              v-on:click.prevent="archiveTask(task.id)"
-            >
-              <span class="icon">
-                <i
-                  class="fa"
-                  :class="{'fa-square-o': !task.archive,
-                                                        check: !task.archive,
-                                                        'fa-check-square-o': task.archive,
-                                                        done: task.archive}"
-                  aria-hidden="true"
-                ></i>
-              </span>
-            </a>
-          </header>
-          <div class="card-content">
-            <div class="content">
-              <p
-                v-if="task !== editingTask"
-                @dblclick="editTask(task)"
-                v-bind:title="message"
-              >{{ task.body }}</p>
-              <input
-                class="input"
-                v-if="task === editingTask"
-                v-autofocus
-                @keyup.enter="endEditing(task)"
-                @blur="endEditing(task)"
-                type="text"
-                placeholder="New task"
-                v-model="task.body"
-              >
-            </div>
-          </div>
-          <footer class="card-footer">
-            <a class="card-footer-item" v-on:click.prevent="deleteTask(task.id)">Delete</a>
-          </footer>
+    <section class="list">
+      <ul class="list-item">
+        <li v-for="(task,index) in tasks" :key="`task-${index}`" :class="{done: isChecked(task)}">
+          <input type="checkbox" class="checkbox" @click="check" v-model="task.checked">
+
+          <input
+            type="text"
+            v-if="task === editingTask"
+            v-auto-focus
+            class="text-input"
+            @keyup.enter="endEditing(task)"
+            @blur="endEditing(task)"
+            v-model="task.text"
+          >
+
+          <label
+            for="checkbox"
+            v-if="task !== editingTask"
+            @dblclick="editTask(task)"
+          >{{ task.text }}</label>
+
+          <button class="delete" @click="removeTask(task)">X</button>
         </li>
-      </div>
-    </div>
+      </ul>
+    </section>
   </div>
 </template>
 
 <script>
 export default {
+  el: "#todo",
   name: 'ToDoList',
   directives: {
     autofocus: {
@@ -86,89 +51,74 @@ export default {
       }
     }
   },
-  data() {
-    return {
-      message: 'Double click for editing.',
-      list: [],
-      task: {
-        id: '',
-        body: '',
-        archive: ''
-      },
-      editingTask: {},
-      activeItem: 'current'
-    };
-  },
-  created() {
-    this.fetchTaskList();
-  },
-  methods: {
-    fetchTaskList(archive = null) {
-      if (archive === null) {
-        var url = 'current_tasks';
-        this.setActive('current');
-      } else {
-        var url = 'archived_tasks';
-        this.setActive('archive');
-      }
-      axios.get(url).then(result => {
-        this.list = result.data;
-      });
-    },
-    isActive(menuItem) {
-      return this.activeItem === menuItem;
-    },
-    setActive(menuItem) {
-      this.activeItem = menuItem;
-    },
-    createTask() {
-      axios
-        .post('create_task', this.task)
-        .then(result => {
-          this.task.body = '';
-          this.fetchTaskList();
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    },
-    editTask(task) {
-      this.editingTask = task;
-    },
-    endEditing(task) {
-      this.editingTask = {};
-      if (task.body.trim() === '') {
-        this.deleteTask(task.id);
-      } else {
-        axios
-          .post('edit_task', task)
-          .then(result => {
-            console.log('success!');
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      }
-    },
-    deleteTask(id) {
-      axios
-        .post('delete_task/' + id)
-        .then(result => {
-          this.fetchTaskList();
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    },
-    archiveTask(id) {
-      axios
-        .post('archive_task/' + id)
-        .then(result => {
-          this.fetchTaskList();
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
-  }
-};
+ data: {
+			newTask: "",
+			tasks: [
+				{
+					text: "This is an example task. Delete or add your own",
+					checked: false
+				}
+			],
+
+			editingTask: {
+
+			}
+		},
+
+		computed: {
+			areAllSelected: function () {
+				return this.tasks.every(function(task) {
+					return task.checked;
+				}) &&  this.tasks.length > 0;
+			},
+		},
+methods: {
+
+			addTask: function () {
+				var task = this.newTask.trim();
+				if (task) {
+					this.tasks.push({text: task, checked: false});
+					this.newTask = "";
+				}
+			},
+
+			removeTask: function (task) {
+        var index = this.tasks.indexOf(task);
+				this.tasks.splice(index, 1);
+			},
+
+			editTask: function (task) {
+				this.editingTask = task;
+			},
+
+			endEditing: function (task) {
+				this.editingTask = {};
+				if (task.text.trim() === ""){
+					this.removeTask(task);
+				}
+
+			},
+
+			clearList: function () {
+				this.tasks = [
+
+				];
+			},
+
+			selectAll: function (task) {
+				var targetValue = this.areAllSelected ? false : true;
+				for (var i = 0; i < this.tasks.length; i++) {
+					this.tasks[i].checked = targetValue;
+				}
+			},
+
+			check: function (task) {
+				task.checked = true;
+			},
+
+			isChecked: function (task) {
+				return task.checked;
+			}
+
+		}
+	});

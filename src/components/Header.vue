@@ -15,9 +15,9 @@
           <b-nav-item>
             <router-link activeClass="active" to="/bModal">Modal Dialog</router-link>
           </b-nav-item>
-
-          <b-nav-item>Another Link</b-nav-item>
-          <b-nav-item disabled>Disabled</b-nav-item>
+          <b-nav-item>
+            <router-link activeClass="active" to="/todolist">ToDoList</router-link>
+          </b-nav-item>
         </b-nav>
       </b-navbar>
     </div>
@@ -53,5 +53,12 @@ a.router-link:hover {
 a.router-link {
   color: #ffffff;
   text-decoration: underline;
+}
+li.nav-item a {
+  color: white;
+  text-decoration: none;
+}
+li.nav-item a :hover {
+  color: rgba(255, 255, 255, 0.849);
 }
 </style>
